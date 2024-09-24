@@ -1,14 +1,17 @@
-const cards = document.querySelectorAll('.card');
-const inner_text = document.querySelectorAll('.card');
+document.querySelector('h1').textContent = 'Productos';
 
-cards[0].querySelector('.card-title').textContent = "Brooklyn Nine-Nine";
-cards[0].querySelector('.card-text').textContent = "Los detectives Jake Peralta, Amy Santiago, Rosa Diaz, Charles Boyle y el sargento Terry Jeffords forman una simpática y poco convencional brigada, pero todo cambia tras la llegada del nuevo jefe, el inflexible Raymond Holt.";
+const container = document.querySelector('section.container');
+const cards = [];
 
-cards[1].querySelector('.card-title').textContent = "Derry Girls";
-cards[1].querySelector('.card-text').textContent = "Las vivencias de un grupo de amigas adolescentes en la década de los 90 en Derry, Irlanda del Norte. Una edad convulsa en una época y un lugar difíciles.";
+for (let i = 1; i <= 9; i++) {
+    const card = `
+      <div class="card">
+        <img src="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${i}.jpg" alt="Producto ${i}">
+        <h2>Producto ${i}</h2>
+        <p>Descripción del producto ${i}</p>
+      </div>
+    `;
+    cards.push(card);
+}
 
-cards[2].querySelector('.card-title').textContent = "Anne With An E";
-cards[2].querySelector('.card-text').textContent = "En la década de 1890, una niña huérfana de 13 años es enviada por error a vivir con hermanos mayores a la Isla del Príncipe Eduardo.";
-
-
-console.log
+document.querySelector("section").innerHTML = (cards);
