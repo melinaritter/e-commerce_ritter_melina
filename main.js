@@ -16,7 +16,7 @@ for (let i = 1; i <= 9; i++) {
     cards.push(card);
 }
 
-document.querySelector("section").innerHTML = (cards.join);
+document.querySelector("section").innerHTML = cards.join("");
 }
 
 class Producto {
