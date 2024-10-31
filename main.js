@@ -1,7 +1,7 @@
 function sprint1() {
   document.querySelector('h1').textContent = 'Productos';
 
-  const container = document.querySelector('section.container');
+  const container = document.querySelector('container');
 
 const data = [
   [{
