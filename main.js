@@ -1,10 +1,10 @@
 function sprint1() {
   document.querySelector('h1').textContent = 'Productos';
 
-  const container = document.querySelector('container');
+  const container = document.querySelector('section.container');
 
 const data = [
-  [{
+  {
     "id": 1,
     "description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit.",
     "category": "Industrial",
@@ -67,8 +67,9 @@ const data = [
     "email": "saulton8@hc360.com",
     "gender": "Male",
     "ip_address": "100.145.215.201"
-  }]
+  }
 ]
+
 
 
 const cards = data.map(producto => `
@@ -84,3 +85,4 @@ container.innerHTML = cards.join('');
 }
 
 sprint1();
+
