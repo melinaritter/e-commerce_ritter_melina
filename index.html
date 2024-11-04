@@ -36,6 +36,57 @@
 </nav>
 </header>
 
+<main>
+  <section class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar producto..." />
+    <button id="searchButton">Filtrar</button>
+    <button id="resetButton">Limpiar</button>
+  </section>
+
+  <section class="filter-buttons">
+    <button id="allButton">Ver Todos</button>
+    <button id="modernoButton">Moderno</button>
+    <button id="vintageButton">Vintage</button>
+  </section>
+
+  <input />
+<button id="filter">Filtrar</button>
+<button id="reset">Limpiar</button>
+<script>
+
+
+  const button = document.querySelector("#filter");
+  const reset = document.querySelector("#reset"); 
+  const input = document.querySelector("input");
+  const ul = document.querySelector("ul"); 
+
+  const lis = data.map((li) => <li>${li.name}</li>);
+  ul.inner.HTML = lis.join("");
+
+  const filterList = () => {
+    const filtered = data.filter((item) => item.name === input.value);
+
+    if (filtered.lenght === 1) {
+      const lis = filtered.map((li) => <li>${li.name}</li>);
+      ul.inner.HTML = lis.join("");
+    }
+    else {
+      ul.innerHTML = "No se encontraron resultados";
+    }
+    };
+
+    const resetInput = () => {
+      input.value = "";
+      const lis = data.map((li) => <li>${li.name}</li>);
+      ul.innerHTML = lis.join("");
+    };
+
+  buttonFilter.addEventListener("click", getInputText);
+  buttonReset.addEventListener("click", resetInput);
+
+
+</script>
+
 
 
     <h2>Este es un e-commerce en proceso</h2>
