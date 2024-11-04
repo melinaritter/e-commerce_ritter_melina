@@ -3,7 +3,7 @@ const navbarContainer = document.querySelector('.navbar-collapse');
 if (navbarContainer) {
     const ul = document.createElement('ul');
     ul.classList.add('navbar-nav', 'me-auto', 'mb-2', 'mb-lg-0'); 
-    const items = ['Moderno', 'Vintage',];
+    const items = ['Todos', 'Moderno', 'Vintage'];
     
     items.forEach(item => {
         const li = document.createElement('li');

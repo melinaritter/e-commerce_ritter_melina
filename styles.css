@@ -1,7 +1,7 @@
-header {
+header.nav {
   display: block;
   width: 100%;
   background-color: #fcf9f6ec;
   padding: 10px;
-  border: 2px solid blue;
+  border: 2px solid rgb(66, 66, 82);
 }

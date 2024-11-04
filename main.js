@@ -2,6 +2,7 @@ function sprint1() {
   document.querySelector('h1').textContent = 'Productos';
 
   const container = document.querySelector('section.container');
+  const contenedorProductos = document.getElementById('contenedor-productos');
 
 const data = [
   {
@@ -46,7 +47,7 @@ const data = [
     "ip_address": "6.127.106.137"
   }, {
     "id": 6,
-    "title": "fabricio",
+    "title": "Fabricio",
     "description": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
     "category": "Moderno",
     "price": "49",
@@ -81,34 +82,56 @@ const data = [
 
 
 
-const cards = data.map(producto => `
-  <div class="card">
-      <img src="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${producto.id}.jpg" alt="Producto ${producto.id}">
-      <h1> ${producto.title}</h1> 
+
+function mostrarCards(productos) {
+  container.innerHTML = productos.map(producto => `
+    <div class="card p-3" style="width: 18rem;">
+    <img src="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${producto.id}.jpg" alt="Imagen de ${producto.title}">
+      <h1>${producto.title}</h1> 
       <h2>${producto.category}</h2>
       <h3>Precio: $${producto.price}</h3>
       <h3>Stock: ${producto.stock} unidades</h3>
       <p>${producto.description}</p>
       <button onclick="window.location.href='producto.html?prod=${producto.id}'">Ver más</button>
-  </div>
-`);
-
-container.innerHTML = cards.join('');
+    </div>
+  `).join('');
 }
 
-function filterList() {
-  if (category.value === 'all') {
-    cards(data)}
-    else if (category === "Moderno") {
-      const moderno = data.filter(producto => producto.category === 'Moderno');
-      cards(moderno)} 
-      else {
-        const vintage = data.filter(producto => producto.category === 'Vintage');
-        cards(vintage)
-      }
-    }
 
 
+mostrarCards(data);
+
+const buscador = document.getElementById('buscador');
+const botonFiltrar = document.getElementById('filtrar');
+const botonLimpiar = document.getElementById('limpiar');
+const botonModerno = document.getElementById('moderno');
+const botonVintage = document.getElementById('vintage');
+const botonVerTodos = document.getElementById('verTodos');
+
+botonFiltrar.addEventListener('click', () => {
+  const filtro = buscador.value.toLowerCase();
+  const productosFiltrados = data.filter(producto => producto.title.toLowerCase().includes(filtro));
+  mostrarCards(productosFiltrados);
+});
+
+botonLimpiar.addEventListener('click', () => {
+  buscador.value = '';
+  mostrarCards(data);
+});
+
+botonModerno.addEventListener('click', () => {
+  const productosModerno = data.filter(producto => producto.category === 'Moderno');
+  mostrarCards(productosModerno);
+});
+
+botonVintage.addEventListener('click', () => {
+  const productosVintage = data.filter(producto => producto.category === 'Vintage');
+  mostrarCards(productosVintage);
+});
+
+botonVerTodos.addEventListener('click', () => {
+  mostrarCards(data);
+});
+}
 
 sprint1();
-
