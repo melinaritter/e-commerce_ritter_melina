@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="isAuthRedirectHome.js"></script>  
+    
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link
@@ -18,7 +20,7 @@
   <title>Login</title>
  </head>
 
- <body>
+ <body id = "login">
     <form>
       <div class="mb-3">
         <label class="form-label">Email address</label>
@@ -28,25 +30,12 @@
         <label class="form-label">Password</label>
         <input type="password" class="form-control" name="password" />
       </div>
+      <p id="formLoginMessage"></p>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   
-    <script>
-      const USER_LOGIN = { email: "spooky@fox.com", password: "trustno1" };
-      let form = document.querySelector("form");
-  
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (
-          USER_LOGIN.email === form.elements.email.value &&
-          USER_LOGIN.password === form.elements.password.value
-        ) {
-          localStorage.setItem("email", form.elements.email.value);
-          location.href = "./index.html";
-        } else {
-          alert("Los datos ingresados son incorrectos.");
-        }
-      });
-    </script>
+    <script src="consts.js"></script>  
+    <script src="login.js"></script>  
+    
   </body>
   </html>
