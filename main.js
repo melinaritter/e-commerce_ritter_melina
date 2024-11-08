@@ -82,16 +82,17 @@ const data = [
 
 
 
-
 function mostrarCards(productos) {
   container.innerHTML = productos.map(producto => `
-    <div class="card p-3" style="width: 18rem;">
-    <img src="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${producto.id}.jpg" alt="Imagen de ${producto.title}">
+    <div class="d-flex flex-column justify-content-between card p-3" style="width: 18rem;" "height: 24rem;">
+    <div>
+    <img src="https://66d9ee6caa07a954166f10ed--gregarious-melba-cacdba.netlify.app/${producto.id}.jpg" style= "width: 100%;" "max-height: 36rem;" "alt="Imagen de ${producto.title}">
       <h1>${producto.title}</h1> 
       <h2>${producto.category}</h2>
       <h3>Precio: $${producto.price}</h3>
       <h3>Stock: ${producto.stock} unidades</h3>
       <p>${producto.description}</p>
+      </div>
       <button onclick="window.location.href='producto.html?prod=${producto.id}'">Ver más</button>
     </div>
   `).join('');
@@ -133,5 +134,6 @@ botonVerTodos.addEventListener('click', () => {
   mostrarCards(data);
 });
 }
+
 
 sprint1();
