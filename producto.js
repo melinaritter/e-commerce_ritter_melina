@@ -92,3 +92,63 @@ const data = [
   } else {
       document.querySelector("#product-detail").textContent = "Producto no encontrado.";
   }
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const contenedorBotones = document.getElementById("contenedor-botones");
+    
+    if (contenedorBotones) {
+
+      const contenedorCantidad = document.createElement("div");
+      contenedorCantidad.classList.add("d-flex", "align-items-center");
+  
+      const btnDisminuir = document.createElement("button");
+      btnDisminuir.classList.add("btn", "btn-secondary", "me-2");
+      btnDisminuir.textContent = "-";
+  
+      const inputCantidad = document.createElement("input");
+      inputCantidad.type = "number";
+      inputCantidad.value = 0;
+      inputCantidad.min = 0;
+      inputCantidad.classList.add("form-control", "text-center");
+      inputCantidad.style.width = "60px";
+  
+      const btnIncrementar = document.createElement("button");
+      btnIncrementar.classList.add("btn", "btn-secondary", "ms-2");
+      btnIncrementar.textContent = "+";
+  
+      contenedorCantidad.appendChild(btnDisminuir);
+      contenedorCantidad.appendChild(inputCantidad);
+      contenedorCantidad.appendChild(btnIncrementar);
+      contenedorBotones.appendChild(contenedorCantidad);
+  
+  
+      btnDisminuir.addEventListener("click", () => {
+        if (inputCantidad.value > 0) inputCantidad.value--;
+      });
+  
+      btnIncrementar.addEventListener("click", () => {
+        inputCantidad.value++;
+      });
+  
+
+      const botonCompra = document.createElement("button");
+      botonCompra.classList.add("btn", "btn-primary", "mt-2");
+  
+      if (localStorage.getItem("email")) {
+        botonCompra.textContent = "Comprar";
+        botonCompra.addEventListener("click", () => {
+          alert("Producto agregado al carrito.");
+        });
+      } else {
+        botonCompra.textContent = "Inicie sesión para comprar";
+        botonCompra.addEventListener("click", () => {
+          window.location.href = "login.html";
+        });
+      }
+  
+      contenedorBotones.appendChild(botonCompra);
+    } else {
+      console.error("No se encontró el contenedor para los botones de cantidad.");
+    }
+  });  
