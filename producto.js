@@ -94,61 +94,115 @@ const data = [
   }
 
 
-  document.addEventListener("DOMContentLoaded", function() {
-    const contenedorBotones = document.getElementById("contenedor-botones");
-    
-    if (contenedorBotones) {
 
-      const contenedorCantidad = document.createElement("div");
-      contenedorCantidad.classList.add("d-flex", "align-items-center");
+document.addEventListener("DOMContentLoaded", function() {
+  const contenedorBotones = document.getElementById("contenedor-botones");
+  const stockDisponible = productoSeleccionado.stock; 
   
-      const btnDisminuir = document.createElement("button");
-      btnDisminuir.classList.add("btn", "btn-secondary", "me-2");
-      btnDisminuir.textContent = "-";
-  
-      const inputCantidad = document.createElement("input");
-      inputCantidad.type = "number";
-      inputCantidad.value = 0;
-      inputCantidad.min = 0;
-      inputCantidad.classList.add("form-control", "text-center");
-      inputCantidad.style.width = "60px";
-  
-      const btnIncrementar = document.createElement("button");
-      btnIncrementar.classList.add("btn", "btn-secondary", "ms-2");
-      btnIncrementar.textContent = "+";
-  
-      contenedorCantidad.appendChild(btnDisminuir);
-      contenedorCantidad.appendChild(inputCantidad);
-      contenedorCantidad.appendChild(btnIncrementar);
-      contenedorBotones.appendChild(contenedorCantidad);
-  
-  
-      btnDisminuir.addEventListener("click", () => {
-        if (inputCantidad.value > 0) inputCantidad.value--;
-      });
-  
-      btnIncrementar.addEventListener("click", () => {
-        inputCantidad.value++;
-      });
-  
+  if (contenedorBotones) {
 
-      const botonCompra = document.createElement("button");
-      botonCompra.classList.add("btn", "btn-primary", "mt-2");
-  
-      if (localStorage.getItem("email")) {
-        botonCompra.textContent = "Comprar";
-        botonCompra.addEventListener("click", () => {
-          alert("Producto agregado al carrito.");
-        });
-      } else {
-        botonCompra.textContent = "Inicie sesión para comprar";
-        botonCompra.addEventListener("click", () => {
-          window.location.href = "login.html";
-        });
-      }
-  
-      contenedorBotones.appendChild(botonCompra);
+    const contenedorCantidad = document.createElement("div");
+    contenedorCantidad.classList.add("d-flex", "align-items-center");
+
+    const btnDisminuir = document.createElement("button");
+    btnDisminuir.classList.add("btn", "btn-secondary", "me-2");
+    btnDisminuir.textContent = "-";
+
+    const inputCantidad = document.createElement("input");
+    inputCantidad.type = "number";
+    inputCantidad.value = 1; 
+    inputCantidad.min = 1; 
+    inputCantidad.classList.add("form-control", "text-center");
+    inputCantidad.style.width = "60px";
+
+    const btnIncrementar = document.createElement("button");
+    btnIncrementar.classList.add("btn", "btn-secondary", "ms-2");
+    btnIncrementar.textContent = "+";
+
+    contenedorCantidad.appendChild(btnDisminuir);
+    contenedorCantidad.appendChild(inputCantidad);
+    contenedorCantidad.appendChild(btnIncrementar);
+    contenedorBotones.appendChild(contenedorCantidad);
+
+
+    btnDisminuir.addEventListener("click", () => {
+      if (inputCantidad.value > 1) inputCantidad.value--;
+    });
+
+    btnIncrementar.addEventListener("click", () => {
+      if (inputCantidad.value < stockDisponible) inputCantidad.value++;
+    });
+
+
+    const botonCompra = document.createElement("button");
+    botonCompra.classList.add("btn", "btn-primary", "mt-2");
+
+    if (localStorage.getItem("email")) {
+      botonCompra.textContent = "Comprar";
+      botonCompra.addEventListener("click", () => {
+
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cantidadSeleccionada = parseInt(inputCantidad.value, 10);
+
+
+        const productoExistente = cart.find(item => item.idProduct === productoSeleccionado.id);
+
+        if (productoExistente) {
+
+          const nuevaCantidad = Math.min(productoExistente.quantity + cantidadSeleccionada, stockDisponible);
+          productoExistente.quantity = nuevaCantidad;
+        } else {
+
+          cart.push({
+            idProduct: productoSeleccionado.id,
+            quantity: cantidadSeleccionada
+          });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        const cantidadTotal = cart.reduce((acumulado, item) => acumulado + item.quantity, 0);
+        localStorage.setItem("quantity", cantidadTotal.toString());
+
+
+        const quantityTag = document.getElementById("quantity");
+        quantityTag.innerText = cantidadTotal;
+
+        alert("Producto agregado al carrito.");
+      });
     } else {
-      console.error("No se encontró el contenedor para los botones de cantidad.");
+      botonCompra.textContent = "Inicie sesión para comprar";
+      botonCompra.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
     }
-  });  
+
+    contenedorBotones.appendChild(botonCompra);
+  } else {
+    console.error("No se encontró el contenedor para los botones de cantidad.");
+  }
+});
+
+
+
+  const counter = document.querySelector("#producto .input-gtroup input")
+
+  function increaseItem() {
+    counter.value = Number(counter.value) + 1
+  }
+
+  function addItem() {
+    const cart = JSON.parse(localStorage.getItem("cart"))
+
+    const idProduct = Number(window.location.search.split("=")[1])
+
+    cart.push({idProduct, quantity: Number(counter.value) })
+
+    localStorage.setItem("cart", JSON.stringify(cart))
+
+    let quantity = cart.reduce((acumulado, actual) => acumulado + actual.quantity, 0)
+    localStorage.setItem("quantity", quantity)
+    const quantityTag = document.querySelector("#quantity")
+
+    quantityTag.innerText = quantity
+  }

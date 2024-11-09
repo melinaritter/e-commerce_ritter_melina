@@ -15,7 +15,6 @@ const navbarHTML = `
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
           <li class="nav-item">
             <button id="moderno" class="btn btn-link nav-link">Moderno</button>
           </li>
@@ -27,18 +26,20 @@ const navbarHTML = `
           </li>
         </ul>
         
-
         <div class="d-flex">
           <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Buscar">
           <button id="filtrar" class="btn btn-outline-success" type="button">Filtrar</button>
           <button id="limpiar" class="btn btn-outline-danger ms-2" type="button">Limpiar</button>
         </div>
 
-
         <div class="d-flex ms-auto align-items-center">
           ${localStorage.getItem("email") 
-            ? `<span>${localStorage.getItem("email")}</span> | 
-               <span onclick="logout()" style="cursor:pointer; color:blue;">Cerrar sesión</span>` 
+            ? `<span>${localStorage.getItem("email")}</span> 
+               <span class="d-flex align-items-center ms-3">
+                 <img src="./imagenes/Comprar.png" alt="Carrito" height="25">
+                 <b id="quantity" class="ms-1">${localStorage.getItem("quantity") || 0}</b>
+               </span> 
+               | <span onclick="logout()" style="cursor:pointer; color:blue;">Cerrar sesión</span>` 
             : `<a href="login.html" class="nav-link">Iniciar sesión</a>`
           }
         </div>
@@ -48,8 +49,9 @@ const navbarHTML = `
 `;
 
 
+
 navbarContainer.innerHTML = navbarHTML;
- 
+
 function logout() {
   localStorage.clear();
   location.href = "index.html";
