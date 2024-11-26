@@ -36,7 +36,7 @@ const navbarHTML = `
           ${localStorage.getItem("email") 
             ? `<span>${localStorage.getItem("email")}</span> 
                <span class="d-flex align-items-center ms-3">
-                 <img src="./imagenes/Comprar.png" alt="Carrito" height="25">
+                 <a href = "cart.html"> <img src="./imagenes/Comprar.png" alt="Carrito" height="25"> </a>
                  <b id="quantity" class="ms-1">${localStorage.getItem("quantity") || 0}</b>
                </span> 
                | <span onclick="logout()" style="cursor:pointer; color:blue;">Cerrar sesión</span>` 

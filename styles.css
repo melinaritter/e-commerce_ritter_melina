@@ -5,3 +5,17 @@ header.nav {
   padding: 10px;
   border: 2px solid rgb(66, 66, 82);
 }
+
+
+   #cart .card .me-4 {
+    width: 180px;
+    overflow: hidden;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+   }
+
+   #cart .card .me-4 img {
+    width: 100%;
+   }
