@@ -64,3 +64,10 @@ function logout() {
   localStorage.clear();
   location.href = "index.html";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const quantityTag = document.getElementById("quantity");
+  if (quantityTag) {
+    quantityTag.innerText = localStorage.getItem("quantity") || 0;
+  }
+});
