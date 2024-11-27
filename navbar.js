@@ -1,5 +1,13 @@
 const navbarContainer = document.querySelector('.navbar-collapse'); 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const quantityTag = document.getElementById("quantity");
+  if (quantityTag) {
+    quantityTag.innerText = localStorage.getItem("quantity") || 0;
+  }
+});
+
+
 const navbarHTML = `
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">

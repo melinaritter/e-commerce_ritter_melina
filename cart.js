@@ -1,5 +1,10 @@
 const cardsSection = document.querySelector("#cart #cards");
 
+document.addEventListener("DOMContentLoaded", () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    getCart(cart);
+    updateTotal(cart);
+  });
 
 function getCart(cart) {
     if (!cart || cart.length === 0) {
@@ -50,17 +55,15 @@ function getCart(cart) {
 
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
-    document.querySelector("#cart .card-header span").textContent = `$${total}`;
+    document.querySelector("#cart-total").textContent = `$${total}`;
+
 }
 
 getCart(JSON.parse(localStorage.getItem("cart")))
 
 function updateTotal(cart) {
-    const cartTotalElement = document.querySelector("#cart-total");
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
-    if (cartTotalElement) {
-        cartTotalElement.textContent = `$${total}`;
-    }
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+  document.querySelector("#cart-total").textContent = `$${total}`;
 }
 
 
@@ -68,8 +71,10 @@ function updateTotal(cart) {
 
 total(JSON.parse(localStorage.getItem("cart")))
 
-getCart(JSON.parse(localStorage.getItem("cart")));
-updateTotal(JSON.parse(localStorage.getItem("cart")));
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+getCart(cart);
+updateTotal(cart);
+
 
 
 function removeItem(id) {
@@ -94,6 +99,8 @@ function removeItem(id) {
     }
 
     console.log("Producto eliminado. Carrito actualizado:", newCart);
+
+
 }
 
 function clearCart() {
