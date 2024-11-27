@@ -11,6 +11,10 @@
    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
    crossorigin="anonymous"
   />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="path/to/cart.js"></script>
+  
+
   <link rel="stylesheet" href="./styles.css" />
 
  </head>
@@ -34,7 +38,7 @@
       <div class="col">
         <button class="btn btn-secondary" onclick="window.location.href='./index.html'">Seguir Comprando</button>
         <button class="btn btn-danger" onclick="clearCart()">Vaciar Carrito</button>
-        <button class="btn btn-success" id="btn-checkout">Checkout</button>
+        <button class="btn btn-success" onclick ="checkout()" id="btn-checkout">Checkout</button>
       </div>
     </div>
   </div>

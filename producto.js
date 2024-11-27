@@ -41,7 +41,7 @@ const data = [
       "ip_address": "6.127.106.137"
     }, {
       "id": 6,
-      "title": "fabricio",
+      "title": "Fabricio",
       "description": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
       "category": "Moderno",
       "price": "49",
