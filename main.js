@@ -1,8 +1,5 @@
 function sprint1() {
-  document.querySelector('h1').textContent = 'Productos';
-
-  const container = document.querySelector('section.container');
-  const contenedorProductos = document.getElementById('contenedor-productos');
+  const container = document.querySelector('main');
 
 const data = [
   {
@@ -99,8 +96,17 @@ function mostrarCards(productos) {
 }
 
 
+ const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, 3000);
+  });
 
-mostrarCards(data);
+  promise.then(() => {
+    mostrarCards(data);
+  });
+
+
 
 const buscador = document.getElementById('buscador');
 const botonFiltrar = document.getElementById('filtrar');
@@ -137,3 +143,4 @@ botonVerTodos.addEventListener('click', () => {
 
 
 sprint1();
+
